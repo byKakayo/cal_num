@@ -1,0 +1,24 @@
+clear;
+
+n = 1000;
+R = rand(n);
+A = R'*R;
+tic
+[L, U, P] = lu(A);
+toc
+A = P*A;
+tic
+for k=1:n-1
+	if(A(k,k) == 0)
+		error('Elemento nulo na diagonal');
+	end
+	for i=k+1:n
+		A(i,k) = A(i,k)/A(k,k);
+		for j=k+1:n
+			A(i,j) = A(i,j) - A(i,k)*A(k,j);
+		end
+	end
+end
+toc
+A;
+

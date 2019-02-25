@@ -1,0 +1,17 @@
+n = 3;
+R = rand(n);
+A = R'*R;
+%A = [1 2 3; 4 5 6; 7 9 9];
+[L, U, P] = lu(A)
+A = A*P
+
+for k=1:n-1
+	if(A(k,k) == 0)
+		error('Elemento nulo na diagonal');
+	end
+	for i=k+1:n
+		A(i,k) = A(i,k)/A(k,k);
+		for j=k+1:n
+			A(i,j) = A(i,j) - A(i,k)*A(k,j);
+		end
+	en
